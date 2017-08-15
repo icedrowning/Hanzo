@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import sqlite3
 import hashlib
-connection=sqlite3.connect('userinfo.db')
+connection=sqlite3.connect('main.db')
 cursor=connection.cursor()
 
 #对密码进行加密
@@ -11,8 +11,8 @@ import bcrypt
 paswd1='$密码'
 paswd2=hashlib.sha512(paswd1.encode("utf-8")).hexdigest()
 hash = bcrypt.hashpw(paswd2.encode("utf-8"), bcrypt.gensalt(12))
-insert_sql="insert into userinfomation (id,nickname,passwd,email,image) values (?,?,?,?,?)"# ? 为占位符
-cursor.execute(insert_sql,('$ID','$username',hash,'$email','$image'))
+insert_sql="insert into userinfo (name,passwd,email) values (?,?,?)"# ? 为占位符
+cursor.execute(insert_sql,('$username',hash,'$email'))
 connection.commit()
 connection.close()
 #比较方法
