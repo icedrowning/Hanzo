@@ -13,10 +13,12 @@ sql='''create table userinfo(
 id  integer primary key  unique not null,
 name text,
 passwd text,
-sex text,
+sex text CHECK(sex=='M' OR sex=='F' OR sex is NULL),
 signature text,
 email text,
 image text,
+sendemail,text CHECK(sendemail=='0' OR sendemail=='1'),
+isdelete text CHECK(isdelete=='0' OR isdelete=='1'),
 Reserved1 text,
 Reserved2 text,
 Reserved3 text)'''

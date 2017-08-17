@@ -10,7 +10,7 @@ import hashlib
 import bcrypt
 paswd1='$密码'
 paswd2=hashlib.sha512(paswd1.encode("utf-8")).hexdigest()
-hash = bcrypt.hashpw(paswd2.encode("utf-8"), bcrypt.gensalt(12))
+hash = bcrypt.hashpw(paswd2.encode("utf-8"), bcrypt.gensalt(11))
 insert_sql="insert into userinfo (name,passwd,email) values (?,?,?)"# ? 为占位符
 cursor.execute(insert_sql,('$username',hash,'$email'))
 connection.commit()
