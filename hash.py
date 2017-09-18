@@ -61,11 +61,11 @@ elif choice.strip().lower()=='b':
     if bool(os.path.exists(file_path))== True:
 
         start = time.time()
-		print('正在计算中，请稍后......')
+        print('正在计算中，请稍后......')
         md5_value = get_md5(file_path)
         sha1_value = get_sha1(file_path)
         sha256_value = get_sha256(file_path)
-		print('计算完成!')
+        print('计算完成!')
         end = time.time()
         print('文件路径：'+file_path)
         print('文件大小：'+ str(os.path.getsize(file_path))+'字节')
