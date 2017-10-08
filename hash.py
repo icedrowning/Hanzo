@@ -7,7 +7,7 @@ import os
 choice=input('''请选择计算哈希的目标：
 a for characters 
 b for file
-''')
+\n->''')
 if choice.strip().lower()=='a':
     user_input = input('please input characters:')
     print('md5: ' + hashlib.md5(user_input.encode('utf-8')).hexdigest())
@@ -68,14 +68,30 @@ elif choice.strip().lower()=='b':
         print('计算完成!')
         end = time.time()
         print('文件路径：'+file_path)
-        print('文件大小：'+ str(os.path.getsize(file_path))+'字节')
+        #根据文件大小给出合适字节单位
+        if 0 < os.path.getsize(file_path) < 1024:
+            file_size = str(os.path.getsize(file_path))
+            print('文件大小：' + file_size + 'B')
+        elif 1024 <= os.path.getsize(file_path) < 1048576:
+            file_size = str(round(os.path.getsize(file_path) / 1024, 2))
+            print('文件大小：' + file_size + 'KB')
+        elif 1048576 <= os.path.getsize(file_path) < 1073741824:
+            file_size = str(round(os.path.getsize(file_path) / 1048576, 2))
+            print('文件大小：' + file_size + 'MB')
+        else :
+            file_size = str(round(os.path.getsize(file_path) / 1073741824, 2))
+            print('文件大小：' + file_size + 'GB')
+
+
+
+
         print('耗时： '+'%.3f' % (end-start)+' 秒')
 
         print('md5: '+md5_value)
         print('sha1: '+sha1_value)
         print('sha256: '+sha256_value)
     else:
-        print('sorry，文件路径有误')
+        print('sorry，文件路径有误，请重新核对')
 
 else:
     print('计算字符串请输入a，计算文件请输入b')
