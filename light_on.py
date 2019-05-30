@@ -16,8 +16,8 @@ elem = driver.find_element_by_xpath(".//*[@id='server-search-app']/div[2]/div[2]
 elem.send_keys(Keys.RETURN)
 new_window = driver.window_handles[-1]
 driver.switch_to.window(new_window)
+#等待加载完毕，如果卡了可能有问题。后续可以加入check
+time.sleep(2)
 elem = driver.find_element_by_xpath(".//*[@id='bilibiliPlayer']/div[1]/div[1]/div[8]/video")
-#elem.send_keys(Keys.RETURN)
-print(elem)
 ActionChains(driver).click(elem).perform()
 
