@@ -56,7 +56,7 @@ CREATE [EXTERNAL] TABLE [IF NOT EXISTS] table_name
 
 创建简单表：
 
-hive> CREATE TABLE pokes (foo INT, bar STRING);
+```hive> CREATE TABLE pokes (foo INT, bar STRING);```
 
 
 创建外部表：
