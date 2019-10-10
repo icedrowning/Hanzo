@@ -1,0 +1,12 @@
+#!/usr/local/bin/python
+#coding=utf-8
+import cloudconvert
+api = cloudconvert.Api('XXXXX')
+process = api.convert({
+    'inputformat': 'jpg',
+    'outputformat': 'png',
+    'input': 'upload',
+    'file': open('/Users/jiaqiong/PycharmProjects/myproject/2019.jpg', 'rb')
+})
+process.wait() # wait until conversion finished
+process.download("/Users/jiaqiong/PycharmProjects/myproject/2018.png") # download output file
