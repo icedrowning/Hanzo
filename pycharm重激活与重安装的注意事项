@@ -1,0 +1,18 @@
+一个坑踩了两次，好气呀！必须记录一下
+最近由于更换了jetbrains-agent license server（新的http://fls.jetbrains-agent.com）导致之前的激活失效
+在https://zhile.io/2018/08/25/jetbrains-license-server-crack.html下载了新的agent后，随手把旧的jar文件删了，但也导致pycharm根本启不来
+重装软件后还是起不来
+在/Applications/PyCharm.app/Contents/bin下启动format.sh，报错大概说的是vm配置项问题，删除bin目录下pycharm.vmoptions后依旧启不来
+看来该配置还记录在了别的地方
+
+后来参考网上的说法，执行了
+cd ~/Library/Preferences/           
+rm -rf PyCharm2019.2/         
+cd ~/Library/Logs
+rm -rf PyCharm2019.2/
+cd ~/Library/Application\ Support/
+rm -rf PyCharm2019.2/
+cd ~/Library/Caches/
+rm -rf PyCharm2019.2/
+应该是把遗留的内容都清理了。具体每个位置存放什么类型的配置文件，没有花时间研究
+至此软件恢复正常
