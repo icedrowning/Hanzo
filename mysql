@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+
+import pymysql.cursors
+# Connect to the database
+connection = pymysql.connect(host='localhost',
+                             user='root',
+                             password='12345678',
+                             db='jiaqiong',
+                             charset='utf8mb4',
+                             cursorclass=pymysql.cursors.DictCursor)
+try:
+    with connection.cursor() as cursor:
+        # Read a single record
+        sql = "select * from jiaqiong.student"
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        print(result)
+finally:
+    connection.close()
