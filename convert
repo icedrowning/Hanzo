@@ -1,12 +1,45 @@
 #!/usr/local/bin/python
 #coding=utf-8
 import cloudconvert
-api = cloudconvert.Api('XXXXX')
-process = api.convert({
-    'inputformat': 'jpg',
-    'outputformat': 'png',
-    'input': 'upload',
-    'file': open('/Users/jiaqiong/PycharmProjects/myproject/2019.jpg', 'rb')
-})
-process.wait() # wait until conversion finished
-process.download("/Users/jiaqiong/PycharmProjects/myproject/2018.png") # download output file
+import time
+import threading
+import os
+import requests
+
+g=0
+def convert(file_path,informat,outformat):
+    try:
+        if bool(os.path.exists(file_path)) == True:#判断文件是否存在
+            api = cloudconvert.Api('yZYg2o4b68f4yzbydjmlLSrwXaieDigUPtzi4kTMiDZSEEgCBMcqGRCL2udrPIfX')
+            process = api.convert({''
+                                   'inputformat': informat,
+                                   'outputformat': outformat,
+                                   'input': 'upload',
+                                   'file': open(file_path, 'rb')})
+
+            print(process['message'])
+            process.wait() # wait until conversion finished
+            print(process['message'])
+            # 完成 if process['message'] == 'Conversion finished!'
+            process.download(file_path+'.'+outformat) # download output file
+            global g
+            g=1
+        else:
+            print('文件路径不正确')
+    except cloudconvert.exceptions.BadRequest:
+        print("请求文件格式不支持")
+
+def linking():
+    while True:
+        global g
+        time.sleep(3)
+        r=requests.get('https://cloudconvert.com/user/profile')
+        if r.elapsed.total_seconds()>0.2:
+            print("网络波动较大，转换时间可能较长")
+        if g == 1:
+            break
+
+t1=threading.Thread(target=convert,args=('/Users/jiaqiong/PycharmProjects/myproject/2018.png','png','jpg',))
+t2=threading.Thread(target=linking)
+t1.start()
+t2.start()
