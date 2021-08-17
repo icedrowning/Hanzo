@@ -5,7 +5,7 @@ from email.mime.text import MIMEText
 from email.utils import formataddr
 my_sender='icedrowning@163.com' #发件人邮箱账号，为了后面易于维护，所以写成了变量
 #这个后面会配置
-my_user='1003000644@qq.com' #收件人邮箱账号，为了后面易于维护，所以写成了变量
+my_user='10@qq.com' #收件人邮箱账号，为了后面易于维护，所以写成了变量
 def mail():
     ret=True
     try:
